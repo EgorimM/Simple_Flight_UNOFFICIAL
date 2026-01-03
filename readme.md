@@ -1,4 +1,4 @@
-# Simple Flight
+# Simple Flight unofficial
 
 ### A mod for Minecraft 1.7.10
 
