@@ -13,12 +13,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import deep_ci.mcmods.simpleflight.common.CommonProxy;
 
-@Mod(modid = "DP_SimpleFlight", version = "0.9-prerelease")
+@Mod(modid = "DP_SimpleFlight", version = "0.9-prerelease3")
 public class SimpleFlight
 {
 	public static final String MODID = "DP_SimpleFlight";
 	public static final String NAME = "Simple Flight";
-	public static final String VERSION = "0.9-prerelease";
+	public static final String VERSION = "0.9-prerelease3";
 	@SidedProxy(clientSide = "deep_ci.mcmods.simpleflight.client.ClientProxy", serverSide = "deep_ci.mcmods.simpleflight.common.CommonProxy")
 	public static CommonProxy proxy;
 	public static SimpleConfig config;
