@@ -1,0 +1,32 @@
+dp_simpleflight.tooltip.jetpackflapcount=%1$s/%2$s осталось топлива
+dp_simpleflight.tooltip.flapcount=%1$s взмахов крыльев за полёт
+dp_simpleflight.tooltip.fallreduction=%1$s меньше урона от падения
+dp_simpleflight.tooltip.cooldown=%1$s перезарядка
+dp_simpleflight.tooltip.bonusflaps=+%1$s всего взмахов
+dp_simpleflight.tooltip.coolbonus=-%1$s секунд до полной перезарядки
+
+enchantment.fly_longer=Длительность полёта
+enchantment.fly_faster=Воздушная стремительность
+
+item.leather_glider.name=Кожаный планер
+item.paper_glider.name=Папирусный планер
+item.cloth_glider.name=Тканевый планер
+item.reed_paper_glider.name=Папирусный тростниковый планер
+item.reed_cloth_glider.name=Тканевый тростниковый планер
+
+item.leather_wings.name=Кожаные крылья
+item.gold_feather_wings.name=Быстрые перьевые крылья
+item.gold_leather_wings.name=Быстрые кожаные крылья
+item.gold_cloth_wings.name=Быстрые тканевые крылья
+item.iron_feather_wings.name=Тяжелые перьевые крылья
+item.iron_leather_wings.name=Тяжелые кожаные крылья
+item.iron_cloth_wings.name=Тяжелые тканевые крылья
+item.chain_feather_wings.name=Кольчужные перьевые крылья
+item.chain_leather_wings.name=Кольчужные кожаные крылья
+item.chain_cloth_wings.name=Кольчужные тканевые крылья
+item.diamond_feather_wings.name=Алмазные перьевые крылья
+item.diamond_leather_wings.name=Алмазные кожаные крылья
+item.diamond_cloth_wings.name=Алмазные тканевык рылья
+
+item.jetpack.name=Реактивный ранец
+item.jetglider.name=Реактивный планер
