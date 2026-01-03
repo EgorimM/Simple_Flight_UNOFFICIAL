@@ -3,9 +3,13 @@ package deep_ci.mcmods.simpleflight.event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.common.registry.GameData;
 import deep_ci.mcmods.simpleflight.SimpleFlight;
 import deep_ci.mcmods.simpleflight.common.CommonProxy;
 import deep_ci.mcmods.simpleflight.entity.ExtendedEntityPlayer;
+import deep_ci.mcmods.simpleflight.item.ItemArmorSimpleWings;
+import deep_ci.mcmods.simpleflight.item.WingItemJetpack;
+import net.minecraft.item.ItemStack;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -88,30 +92,61 @@ public final class SimpleFlightEventHandler
 						}
 					}
 				}
-				double upDraft = 0.0D;
-				for (int a = 0; a < 6; a++)
+				if (!player.isSneaking())
 				{
-					if ((int)Math.floor(player.posY) - a >= 0)
+					boolean allowUpdraft = false;
+
+					// Крылья / обычные планеры (НО НЕ jetpack / jetglider)
+					ItemStack chest = player.getEquipmentInSlot(3);
+					if (!allowUpdraft && chest != null && chest.getItem() != null)
 					{
-						Block block = player.worldObj.getBlock((int)Math.floor(player.posX), (int)Math.floor(player.posY) - a, (int)Math.floor(player.posZ));
-						if ((a < 3) && (block == Blocks.fire))
+						String regName = GameData.getItemRegistry().getNameForObject(chest.getItem());
+
+						if (regName != null && regName.startsWith("DP_SimpleFlight:"))
 						{
-							upDraft += 0.5D;
-						}
-						else if (block == Blocks.lava)
-						{
-							upDraft += 1.0D;
-							a = 6;
+							if (regName.contains("_wings"))
+							{
+								allowUpdraft = true;
+							}
+							else if (regName.contains("_glider") && !regName.endsWith("jetglider"))
+							{
+								allowUpdraft = true;
+							}
 						}
 					}
-					else
+
+					if (allowUpdraft)
 					{
-						a = 6;
+						double upDraft = 0.0D;
+
+						for (int a = 0; a < 6; a++)
+						{
+							int y = (int)Math.floor(player.posY) - a;
+							if (y < 0)
+								break;
+
+							Block block = player.worldObj.getBlock(
+								(int)Math.floor(player.posX),
+								y,
+								(int)Math.floor(player.posZ)
+							);
+
+							if (a < 3 && block == Blocks.fire)
+							{
+								upDraft += 0.5D;
+							}
+							else if (block == Blocks.lava || block == Blocks.flowing_lava)
+							{
+								upDraft += 1.0D;
+								break;
+							}
+						}
+
+						if (upDraft > 0.0D)
+						{
+							player.addVelocity(0.0D, upDraft, 0.0D);
+						}
 					}
-				}
-				if (upDraft > 0.0D)
-				{
-					player.addVelocity(0.0D, upDraft, 0.0D);
 				}
 			}
 		}
